@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register | Tourly</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="/Tourly/tourly-master/assets/css/style.css"> <!-- Link to your main CSS -->
   <style>
     /* Root Variables for Colors */
     :root {
@@ -24,7 +24,7 @@
     /* General Styles */
     body {
       font-family: 'Arial', sans-serif;
-      margin: 0;
+      margin: 50px;
       padding: 0;
       display: flex;
       justify-content: center;
@@ -148,6 +148,122 @@
   </style>
 </head>
 <body>
+  <header class="header" data-header>
+
+    <div class="overlay" data-overlay></div>
+
+    <div class="header-top">
+      <div class="container">
+
+        <a href="tel:+01123456790" class="helpline-box">
+
+          <div class="icon-box">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+
+          <div class="wrapper">
+            <p class="helpline-title">For Further Inquires :</p>
+
+            <p class="helpline-number">+91 9550969296</p>
+          </div>
+
+        </a>
+
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.svg" alt="Tourly logo">
+        </a>
+
+        <div class="header-btn-group">
+
+          <button class="search-btn" aria-label="Search">
+            <ion-icon name="search"></ion-icon>
+          </button>
+
+          <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="header-bottom">
+      <div class="container">
+
+        <ul class="social-list">
+
+          <!-- <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </li> -->
+
+        </ul>
+
+        <nav class="navbar" data-navbar>
+
+          <div class="navbar-top">
+
+            <a href="#" class="logo">
+              <img src="./assets/images/logo-blue.svg" alt="Tourly logo">
+            </a>
+
+            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+          </div>
+
+          <ul class="navbar-list">
+
+            <li>
+              <a href="/Tourly/tourly-master/index.html" class="navbar-link" data-nav-link>home</a>
+            </li>
+
+            <!-- <li>
+              <a href="#" class="navbar-link" data-nav-link>about us</a>
+            </li> -->
+
+            <!-- <li>
+              <a href="#destination" class="navbar-link" data-nav-link>destination</a>
+            </li> -->
+
+            <li>
+              <a href="/Tourly/tourly-master/index.html#package" class="navbar-link" data-nav-link>packages</a>
+            </li>
+
+            <li>
+              <a href="/Tourly/tourly-master/index.html#gallery" class="navbar-link" data-nav-link>gallery</a>
+            </li>
+
+            <li>
+              <a href="/Tourly/tourly-master/index.html#contact" class="navbar-link" data-nav-link>contact us</a>
+            </li>
+
+
+          </ul>
+
+        </nav>
+
+        <a href="/Tourly/tourly-master/login.html" class="btn btn-primary" data-nav-link id="login-link">Login</a>
+
+      </div>
+    </div>
+
+  </header>
   <div class="register-container">
     <h1>Create an Account</h1>
     <form action="/register" method="POST">
@@ -191,7 +307,7 @@
     </form>
 
     <div class="register-footer">
-      <p>Already have an account? <a href="/login">Login here</a></p>
+      <p>Already have an account? <a href="/Tourly/tourly-master/login.html">Login here</a></p>
     </div>
   </div>
 </body>
