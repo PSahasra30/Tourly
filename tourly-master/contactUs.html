@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Tourly</title>
+  <style>
+    /* Defining Color Palette */
+    :root {
+      --united-nations-blue: hsl(214, 56%, 58%);
+      --bright-navy-blue: hsl(214, 57%, 51%);
+      --spanish-gray: hsl(0, 0%, 60%);
+      --black-coral: hsl(225, 8%, 42%);
+      --oxford-blue: hsl(208, 97%, 12%);
+      --yale-blue: hsl(214, 72%, 33%);
+      --blue-ncs: hsl(197, 100%, 36%);
+      --gunmetal: hsl(206, 34%, 20%);
+      --gainsboro: hsl(0, 0%, 88%);
+      --cultured: hsl(0, 0%, 98%);
+      --white: hsl(0, 0%, 100%);
+      --black: hsl(0, 0%, 0%);
+      --onyx: hsl(0, 0%, 25%);
+      --jet: hsl(0, 0%, 20%);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--cultured);
+      color: var(--black-coral);
+    }
+
+    header {
+      background-color: var(--oxford-blue);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: var(--white);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .contact-container h2 {
+      text-align: center;
+      color: var(--oxford-blue);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      color: var(--blue-ncs);
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 2px solid var(--bright-navy-blue);
+      border-radius: 4px;
+      font-size: 16px;
+      color: var(--black-coral);
+      background-color: var(--cultured);
+    }
+
+    input[type="submit"] {
+      background-color: var(--yale-blue);
+      color: var(--white);
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: var(--blue-ncs);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: var(--gunmetal);
+      color: var(--gainsboro);
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Tourly - Contact Us</h1>
+  </header>
+
+  <div class="contact-container">
+    <h2>We'd love to hear from you!</h2>
+    <form action="/submit-form" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <input type="submit" value="Send Message">
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Tourly. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
