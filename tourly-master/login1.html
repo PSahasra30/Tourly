@@ -29,6 +29,12 @@
       padding: 0;
       background-color: var(--cultured);
       color: var(--black-coral);
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center items horizontally */
+      justify-content: center; /* Center items vertically */
+      height: 100vh;
+      text-align: center;
     }
 
     header {
@@ -36,6 +42,7 @@
       color: var(--white);
       padding: 20px;
       text-align: center;
+      width: 100%; /* Make header full width */
     }
 
     h1 {
@@ -44,11 +51,13 @@
 
     .login-container {
       max-width: 400px;
-      margin: 50px auto;
+      width: 90%;
       padding: 20px;
       background-color: var(--white);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
+      text-align: left;
+      margin-top: 20px; /* Add some space above the container */
     }
 
     .login-container h2 {
@@ -133,12 +142,12 @@
 
   <header>
     <h1>Tourly - Login</h1>
+    <button id="login-logout-btn" onclick="handleLoginLogout()">Login</button>
   </header>
 
   <div class="login-container">
     <h2>Welcome Back!</h2>
-    <!-- <form action="/login" method="POST"> -->
-    <form action="http://localhost:5000/api/auth/login" method="POST"></form>
+    <form id="login-form">
       <label for="email">Email</label>
       <input type="email" id="email" name="email" required>
 
@@ -162,13 +171,19 @@
   </footer>
 
   <script>
-    const loginForm = document.querySelector('form');
+    // Check if the user is already logged in
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      document.getElementById('login-logout-btn').textContent = 'Logout';
+    }
+
+    const loginForm = document.querySelector('#login-form');
+
     loginForm.addEventListener('submit', async function(event) {
       event.preventDefault();
-  
+
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-  
+
       try {
         const response = await fetch('/api/auth/login', {
           method: 'POST',
@@ -177,20 +192,38 @@
           },
           body: JSON.stringify({ email, password }),
         });
-  
+
         const data = await response.json();
+
         if (response.ok) {
           alert('Login successful');
-          // Redirect to another page (e.g., dashboard)
+          localStorage.setItem('token', data.token); // Store the JWT token
+          localStorage.setItem('isLoggedIn', 'true'); // Store login state
+          window.location.href = 'index1.html'; // Redirect to home page
         } else {
-          alert(data.message);
+          alert(data.message); // Display error message from backend
         }
       } catch (error) {
         console.error('Error:', error);
         alert('Something went wrong');
       }
     });
+
+    // Handle login/logout button click
+    function handleLoginLogout() {
+      if (localStorage.getItem('isLoggedIn') === 'true') {
+        // User is logged in, perform logout
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('token'); // Clear the token
+        alert('Logged out successfully');
+        document.getElementById('login-logout-btn').textContent = 'Login';
+        window.location.href = 'login1.html'; // Redirect to login page
+      } else {
+        // User is not logged in, redirect to login page
+        window.location.href = 'login1.html';
+      }
+    }
   </script>
-  
+
 </body>
 </html>

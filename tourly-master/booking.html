@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Package</title>
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  
+  <style>
+    :root {
+      --united-nations-blue: hsl(214, 56%, 58%);
+      --bright-navy-blue: hsl(214, 57%, 51%);
+      --spanish-gray: hsl(0, 0%, 60%);
+      --black-coral: hsl(225, 8%, 42%);
+      --oxford-blue: hsl(208, 97%, 12%);
+      --yale-blue: hsl(214, 72%, 33%);
+      --blue-ncs: hsl(197, 100%, 36%);
+      --gunmetal: hsl(206, 34%, 20%);
+      --gainsboro: hsl(0, 0%, 88%);
+      --cultured: hsl(0, 0%, 98%);
+      --white: hsl(0, 0%, 100%);
+      --black: hsl(0, 0%, 0%);
+      --onyx: hsl(0, 0%, 25%);
+      --jet: hsl(0, 0%, 20%);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cultured);
+      color: var(--black);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h2.section-title {
+      font-size: 2.5rem;
+      color: var(--oxford-blue);
+      text-align: center;
+    }
+
+    .booking {
+      background-color: var(--white);
+      padding: 40px;
+      box-shadow: 0 2px 10px var(--spanish-gray);
+      margin-top: 40px;
+      border-radius: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--gunmetal);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 2px solid var(--gainsboro);
+      border-radius: 5px;
+      background-color: var(--cultured);
+    }
+
+    .form-group input:focus {
+      border-color: var(--blue-ncs);
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--yale-blue);
+      color: var(--white);
+      padding: 15px 25px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--united-nations-blue);
+    }
+
+    .btn-primary a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .btn-primary a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+
+<body>
+  <section class="booking">
+    <div class="container">
+      <h2 class="h2 section-title">Booking Form</h2>
+      
+      <form action="receipt.html" method="GET">
+        <!-- Hidden fields to store the package name and amount -->
+        <input type="hidden" name="packageName" id="packageName">
+        <input type="hidden" name="amount" id="amount">
+        
+        <div class="form-group">
+          <label for="members">Number of Members</label>
+          <input type="number" id="members" name="members" required>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Your Phone</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Booking</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // Get the packageName and amount from the URL and fill in the hidden inputs
+    const urlParams = new URLSearchParams(window.location.search);
+    const packageName = urlParams.get('packageName');
+    const amount = urlParams.get('amount');
+
+    document.getElementById('packageName').value = packageName;
+    document.getElementById('amount').value = amount;
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Receipt</title>
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <style>
+    :root {
+      --united-nations-blue: hsl(214, 56%, 58%);
+      --bright-navy-blue: hsl(214, 57%, 51%);
+      --spanish-gray: hsl(0, 0%, 60%);
+      --black-coral: hsl(225, 8%, 42%);
+      --oxford-blue: hsl(208, 97%, 12%);
+      --yale-blue: hsl(214, 72%, 33%);
+      --blue-ncs: hsl(197, 100%, 36%);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--spanish-gray);
+      color: var(--black-coral);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h2.section-title {
+      font-size: 2.5rem;
+      color: var(--oxford-blue);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .receipt {
+      background-color: var(--white);
+      padding: 40px;
+      box-shadow: 0 2px 10px var(--spanish-gray);
+      margin-top: 40px;
+      border-radius: 10px;
+    }
+
+    .receipt-details {
+      font-size: 1.2rem;
+      color: var(--black-coral);
+    }
+
+    .receipt-details p {
+      margin-bottom: 10px;
+    }
+
+    .receipt-details strong {
+      color: var(--oxford-blue);
+    }
+
+    .receipt-price {
+      background-color: var(--yale-blue);
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      color: var(--white);
+      font-size: 1.4rem;
+      text-align: center;
+    }
+
+    .btn-secondary {
+      background-color: var(--blue-ncs);
+      color: var(--white);
+      padding: 12px 20px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+      display: inline-block;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bright-navy-blue);
+    }
+
+  </style>
+</head>
+
+<body>
+  <section class="receipt">
+    <div class="container">
+      <h2 class="h2 section-title">Booking Receipt</h2>
+
+      <div class="receipt-details">
+        <p><strong>Package:</strong> <span id="packageName"></span></p>
+        <p><strong>Number of Members:</strong> <span id="membersCount"></span></p>
+        <p><strong>Preferred Date:</strong> <span id="bookingDate"></span></p>
+        <p><strong>Your Name:</strong> <span id="userName"></span></p>
+        <p><strong>Your Email:</strong> <span id="userEmail"></span></p>
+        <p><strong>Your Phone:</strong> <span id="userPhone"></span></p>
+
+        <div class="receipt-price">
+          <p><strong>Total Price:</strong> $<span id="totalPrice"></span></p>
+        </div>
+
+        <button class="btn btn-secondary" onclick="window.history.back();">Back to Booking</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Get the form data from the URL and display it
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const packageName = urlParams.get('packageName');
+    const amount = parseFloat(urlParams.get('amount').replace('$', ''));
+    const membersCount = urlParams.get('members');
+    const bookingDate = urlParams.get('date');
+    const userName = urlParams.get('name');
+    const userEmail = urlParams.get('email');
+    const userPhone = urlParams.get('phone');
+
+    document.getElementById('packageName').textContent = packageName;
+    document.getElementById('membersCount').textContent = membersCount;
+    document.getElementById('bookingDate').textContent = bookingDate;
+    document.getElementById('userName').textContent = userName;
+    document.getElementById('userEmail').textContent = userEmail;
+    document.getElementById('userPhone').textContent = userPhone;
+
+    // Calculate the total price
+    const totalPrice = (amount * membersCount).toFixed(2);
+    document.getElementById('totalPrice').textContent = totalPrice;
+  </script>
+</body>
+
+</html>

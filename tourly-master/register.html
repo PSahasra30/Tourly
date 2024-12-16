@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register | Tourly</title>
-  <link rel="stylesheet" href="/Tourly/tourly-master/assets/css/style.css"> <!-- Link to your main CSS -->
+  <title>Register - Tourly</title>
   <style>
-    /* Root Variables for Colors */
+    /* Defining Color Palette */
     :root {
       --united-nations-blue: hsl(214, 56%, 58%);
       --bright-navy-blue: hsl(214, 57%, 51%);
@@ -19,296 +18,171 @@
       --gainsboro: hsl(0, 0%, 88%);
       --cultured: hsl(0, 0%, 98%);
       --white: hsl(0, 0%, 100%);
+      --black: hsl(0, 0%, 0%);
+      --onyx: hsl(0, 0%, 25%);
+      --jet: hsl(0, 0%, 20%);
     }
 
-    /* General Styles */
     body {
-      font-family: 'Arial', sans-serif;
-      margin: 50px;
+      font-family: Arial, sans-serif;
+      margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: var(--gunmetal);
+      background-color: var(--cultured);
+      color: var(--black-coral);
+    }
+
+    header {
+      background-color: var(--oxford-blue);
       color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
     }
 
     .register-container {
-      background-color: var(--oxford-blue);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-      width: 90%;
       max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: var(--white);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
     }
 
-    .register-container h1 {
+    .register-container h2 {
       text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: var(--white);
+      color: var(--oxford-blue);
     }
 
     form {
       display: flex;
       flex-direction: column;
+      gap: 15px;
     }
 
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 14px;
-      color: var(--gainsboro);
-      margin-bottom: 5px;
-    }
-
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid var(--black-coral);
-      border-radius: 5px;
-      background-color: var(--gunmetal);
-      color: var(--white);
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--bright-navy-blue);
-    }
-
-    .register-btn {
-      background-color: var(--bright-navy-blue);
-      color: var(--white);
-      padding: 12px;
-      font-size: 16px;
+    label {
       font-weight: bold;
-      border: none;
-      border-radius: 5px;
+      color: var(--blue-ncs);
+    }
+
+    input {
+      padding: 10px;
+      border: 2px solid var(--bright-navy-blue);
+      border-radius: 4px;
+      font-size: 16px;
+      color: var(--black-coral);
+      background-color: var(--cultured);
+    }
+
+    input[type="submit"] {
+      background-color: var(--yale-blue);
+      color: var(--white);
       cursor: pointer;
-      transition: background 0.3s ease;
-      margin-top: 10px;
+      border: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
 
-    .register-btn:hover {
-      background-color: var(--united-nations-blue);
+    input[type="submit"]:hover {
+      background-color: var(--blue-ncs);
     }
 
-    .register-footer {
+    .footer {
       text-align: center;
-      margin-top: 15px;
+      padding: 10px;
+      background-color: var(--gunmetal);
+      color: var(--gainsboro);
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    .already-registered {
+      text-align: center;
       font-size: 14px;
     }
 
-    .register-footer a {
-      color: var(--blue-ncs);
+    .already-registered a {
+      color: var(--oxford-blue);
       text-decoration: none;
     }
 
-    .register-footer a:hover {
+    .already-registered a:hover {
       text-decoration: underline;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .register-container {
-        padding: 20px;
-      }
-
-      .register-container h1 {
-        font-size: 20px;
-      }
-
-      .register-btn {
-        padding: 10px;
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .register-container {
-        padding: 15px;
-      }
-
-      .register-container h1 {
-        font-size: 18px;
-      }
-
-      .register-btn {
-        padding: 8px;
-        font-size: 13px;
-      }
     }
   </style>
 </head>
 <body>
-  <header class="header" data-header>
 
-    <div class="overlay" data-overlay></div>
-
-    <div class="header-top">
-      <div class="container">
-
-        <a href="tel:+01123456790" class="helpline-box">
-
-          <div class="icon-box">
-            <ion-icon name="call-outline"></ion-icon>
-          </div>
-
-          <div class="wrapper">
-            <p class="helpline-title">For Further Inquires :</p>
-
-            <p class="helpline-number">+91 9550969296</p>
-          </div>
-
-        </a>
-
-        <a href="#" class="logo">
-          <img src="./assets/images/logo.svg" alt="Tourly logo">
-        </a>
-
-        <div class="header-btn-group">
-
-          <button class="search-btn" aria-label="Search">
-            <ion-icon name="search"></ion-icon>
-          </button>
-
-          <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
-            <ion-icon name="menu-outline"></ion-icon>
-          </button>
-
-        </div>
-
-      </div>
-    </div>
-
-    <div class="header-bottom">
-      <div class="container">
-
-        <ul class="social-list">
-
-          <!-- <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-youtube"></ion-icon>
-            </a>
-          </li> -->
-
-        </ul>
-
-        <nav class="navbar" data-navbar>
-
-          <div class="navbar-top">
-
-            <a href="#" class="logo">
-              <img src="./assets/images/logo-blue.svg" alt="Tourly logo">
-            </a>
-
-            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-          </div>
-
-          <ul class="navbar-list">
-
-            <li>
-              <a href="/Tourly/tourly-master/index.html" class="navbar-link" data-nav-link>home</a>
-            </li>
-
-            <!-- <li>
-              <a href="#" class="navbar-link" data-nav-link>about us</a>
-            </li> -->
-
-            <!-- <li>
-              <a href="#destination" class="navbar-link" data-nav-link>destination</a>
-            </li> -->
-
-            <li>
-              <a href="/Tourly/tourly-master/index.html#package" class="navbar-link" data-nav-link>packages</a>
-            </li>
-
-            <li>
-              <a href="/Tourly/tourly-master/index.html#gallery" class="navbar-link" data-nav-link>gallery</a>
-            </li>
-
-            <li>
-              <a href="/Tourly/tourly-master/index.html#contact" class="navbar-link" data-nav-link>contact us</a>
-            </li>
-
-
-          </ul>
-
-        </nav>
-
-        <a href="/Tourly/tourly-master/login.html" class="btn btn-primary" data-nav-link id="login-link">Login</a>
-
-      </div>
-    </div>
-
+  <header>
+    <h1>Tourly - Register</h1>
   </header>
+
   <div class="register-container">
-    <h1>Create an Account</h1>
+    <h2>Create an Account</h2>
     <form action="/register" method="POST">
-      <!-- Full Name -->
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-      </div>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
 
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-      </div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
 
-      <!-- Password -->
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Create a password" required>
-      </div>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
 
-      <!-- Confirm Password -->
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
-      </div>
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
 
-      <!-- Gender -->
-      <div class="form-group">
-        <label for="gender">Gender</label>
-        <select id="gender" name="gender" required>
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="register-btn">Register</button>
+      <input type="submit" value="Register">
     </form>
 
-    <div class="register-footer">
-      <p>Already have an account? <a href="/Tourly/tourly-master/login.html">Login here</a></p>
+    <div class="already-registered">
+      <p>Already have an account? <a href="login1.html">Login here</a></p>
     </div>
   </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Tourly. All rights reserved.</p>
+  </footer>
+
+  <script>
+ const registerForm = document.querySelector('form');
+registerForm.addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirm-password').value;
+
+  try {
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, password, confirmPassword }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message);
+      // Store login status in localStorage or sessionStorage
+      localStorage.setItem('isLoggedIn', 'true');
+      window.location.href = data.redirect; // Redirect to home page
+    } else {
+      alert(data.message); // Show error message
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Something went wrong');
+  }
+});
+
+  </script>
+  
 </body>
 </html>

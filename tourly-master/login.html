@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | Tourly</title>
-  <link rel="stylesheet" href="/Tourly/tourly-master/assets/css/style.css"> <!-- Link to your main CSS -->
+  <title>Login - Tourly</title>
   <style>
-    /* Root Variables for Colors */
+    /* Defining Color Palette */
     :root {
       --united-nations-blue: hsl(214, 56%, 58%);
       --bright-navy-blue: hsl(214, 57%, 51%);
@@ -24,263 +23,205 @@
       --jet: hsl(0, 0%, 20%);
     }
 
-    /* General Styles */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      background-color: var(--cultured);
+      color: var(--black-coral);
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+      align-items: center; /* Center items horizontally */
+      justify-content: center; /* Center items vertically */
       height: 100vh;
-      background-color: var(--gunmetal);
+      text-align: center;
+    }
+
+    header {
+      background-color: var(--oxford-blue);
       color: var(--white);
+      padding: 20px;
+      text-align: center;
+      width: 100%; /* Make header full width */
+    }
+
+    h1 {
+      margin: 0;
     }
 
     .login-container {
-      background-color: var(--oxford-blue);
-      padding: 30px 40px;
-      border-radius: 10px;
-      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-      width: 400px;
-      margin-bottom: 20px; /* Added to ensure the footer appears below */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 400px;
+      width: 90%;
+      padding: 20px;
+      background-color: var(--white);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: left;
+      margin-top: 20px; /* Add some space above the container */
     }
 
-    .login-container h1 {
+    .login-container h2 {
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: var(--white);
+      color: var(--oxford-blue);
     }
 
-    .login-container form {
+    form {
       display: flex;
       flex-direction: column;
-      width: 100%;
+      gap: 15px;
     }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 14px;
-      color: var(--gainsboro);
-      margin-bottom: 8px;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid var(--black-coral);
-      border-radius: 5px;
-      background-color: var(--gunmetal);
-      color: var(--white);
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--bright-navy-blue);
-    }
-
-    .login-btn {
-      width: 100%;
-      background-color: var(--bright-navy-blue);
-      color: var(--white);
-      padding: 10px;
-      font-size: 16px;
+    label {
       font-weight: bold;
-      border: none;
-      border-radius: 5px;
+      color: var(--blue-ncs);
+    }
+
+    input {
+      padding: 10px;
+      border: 2px solid var(--bright-navy-blue);
+      border-radius: 4px;
+      font-size: 16px;
+      color: var(--black-coral);
+      background-color: var(--cultured);
+    }
+
+    input[type="submit"] {
+      background-color: var(--yale-blue);
+      color: var(--white);
       cursor: pointer;
-      transition: background 0.3s ease;
-      margin-top: 10px;
+      border: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
 
-    .login-btn:hover {
-      background-color: var(--united-nations-blue);
+    input[type="submit"]:hover {
+      background-color: var(--blue-ncs);
     }
 
-    .login-footer {
+    .footer {
       text-align: center;
-      margin-top: 20px;
+      padding: 10px;
+      background-color: var(--gunmetal);
+      color: var(--gainsboro);
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    .forgot-password {
+      text-align: center;
       font-size: 14px;
     }
 
-    .login-footer a {
-      color: var(--blue-ncs);
+    .forgot-password a {
+      color: var(--oxford-blue);
       text-decoration: none;
     }
 
-    .login-footer a:hover {
+    .forgot-password a:hover {
       text-decoration: underline;
     }
 
-    footer {
-      background-color: var(--oxford-blue);
-      padding: 20px;
+    .register-text {
       text-align: center;
-      color: var(--gainsboro);
-      margin-top: 20px; /* Moves the footer below the login container */
+      font-size: 14px;
+      margin-top: 10px;
     }
 
-    footer a {
-      color: var(--blue-ncs);
+    .register-text a {
+      color: var(--oxford-blue);
       text-decoration: none;
     }
 
-    footer a:hover {
+    .register-text a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <header class="header" data-header>
 
-    <div class="overlay" data-overlay></div>
-
-    <div class="header-top">
-      <div class="container">
-
-        <a href="tel:+01123456790" class="helpline-box">
-
-          <div class="icon-box">
-            <ion-icon name="call-outline"></ion-icon>
-          </div>
-
-          <div class="wrapper">
-            <p class="helpline-title">For Further Inquiries :</p>
-
-            <p class="helpline-number">+91 9550969296</p>
-          </div>
-
-        </a>
-
-        <a href="#" class="logo">
-          <img src="./assets/images/logo.svg" alt="Tourly logo">
-        </a>
-
-        <div class="header-btn-group">
-
-          <button class="search-btn" aria-label="Search">
-            <ion-icon name="search"></ion-icon>
-          </button>
-
-          <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
-            <ion-icon name="menu-outline"></ion-icon>
-          </button>
-
-        </div>
-
-      </div>
-    </div>
-
-    <div class="header-bottom">
-      <div class="container">
-
-        <ul class="social-list">
-
-          <!-- <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-youtube"></ion-icon>
-            </a>
-          </li> -->
-
-        </ul>
-
-        <nav class="navbar" data-navbar>
-
-          <div class="navbar-top">
-
-            <a href="#" class="logo">
-              <img src="./assets/images/logo-blue.svg" alt="Tourly logo">
-            </a>
-
-            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-          </div>
-
-          <ul class="navbar-list">
-
-            <li>
-              <a href="/Tourly/tourly-master/index.html" class="navbar-link" data-nav-link>home</a>
-            </li>
-
-            <!-- <li>
-              <a href="#" class="navbar-link" data-nav-link>about us</a>
-            </li> -->
-
-            <!-- <li>
-              <a href="#destination" class="navbar-link" data-nav-link>destination</a>
-            </li> -->
-
-            <li>
-              <a href="/Tourly/tourly-master/index.html#package" class="navbar-link" data-nav-link>packages</a>
-            </li>
-
-            <li>
-              <a href="/Tourly/tourly-master/index.html#gallery" class="navbar-link" data-nav-link>gallery</a>
-            </li>
-
-            <li>
-              <a href="/Tourly/tourly-master/index.html#contact" class="navbar-link" data-nav-link>contact us</a>
-            </li>
-
-          </ul>
-
-        </nav>
-
-        <a href="/Tourly/tourly-master/login.html" class="btn btn-primary" data-nav-link id="login-link">Login</a>
-
-      </div>
-    </div>
-
+  <header>
+    <h1>Tourly - Login</h1>
+    <button id="login-logout-btn" onclick="handleLoginLogout()">Login</button>
   </header>
+
   <div class="login-container">
-    <h1>Login to Tourly</h1>
-    <form action="/login" method="POST">
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-      </div>
+    <h2>Welcome Back!</h2>
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
 
-      <!-- Password -->
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-      </div>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
 
-      <!-- Submit Button -->
-      <button type="submit" class="login-btn">Login</button>
+      <input type="submit" value="Log In">
     </form>
 
-    <div class="login-footer">
-      <p>Don't have an account? <a href="/Tourly/tourly-master/register.html">Register here</a></p>
-      <p><a href="/Tourly/tourly-master/forgotPassword.html">Forgot Password?</a></p>
+    <div class="forgot-password">
+      <p><a href="forgotPassword1.html">Forgot Password?</a></p>
+    </div>
+
+    <div class="register-text">
+      <p>If you don't have an account, <a href="register1.html">register here</a>.</p>
     </div>
   </div>
 
+  <footer class="footer">
+    <p>&copy; 2024 Tourly. All rights reserved.</p>
+  </footer>
 
-  
+  <script>
+    // Check if the user is already logged in
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      document.getElementById('login-logout-btn').textContent = 'Logout';
+    }
+
+    const loginForm = document.querySelector('#login-form');
+
+    loginForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+        
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('Login successful');
+          localStorage.setItem('isLoggedIn', 'true'); // Store login state
+          window.location.href = 'index1.html'; // Redirect to home page
+        } else {
+          alert(data.message); // Display error message from backend
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong');
+      }
+    });
+
+    // Handle login/logout button click
+    function handleLoginLogout() {
+      if (localStorage.getItem('isLoggedIn') === 'true') {
+        // User is logged in, perform logout
+        localStorage.removeItem('isLoggedIn');
+        alert('Logged out successfully');
+        document.getElementById('login-logout-btn').textContent = 'Login';
+        window.location.href = 'login1.html'; // Redirect to login page
+      } else {
+        // User is not logged in, redirect to login page
+        window.location.href = 'login1.html';
+      }
+    }
+  </script>
+
 </body>
 </html>

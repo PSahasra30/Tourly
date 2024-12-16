@@ -1,44 +1,91 @@
 const express = require('express');
-const path = require('path');
-const app = express();
-const PORT = 3000;
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const path = require('path');
 
-// Serve static files from the "tourly" folder
-app.use(express.static(path.join(__dirname, 'tourly')));
+// Load environment variables from a .env file
+dotenv.config();
 
-// middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+const app = express();
+const port = 5000;
 
-// Serve the "index.html" file on the root route
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html')); // Correct path to index.html
+// Middleware
+app.use(bodyParser.json());
+
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.log('MongoDB connection error:', err));
+
+// MongoDB User Model (simple version)
+const User = mongoose.model('User', new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+}));
+
+// API routes for registration and login
+app.post('/api/auth/register', async (req, res) => {
+  const { name, email, password, confirmPassword } = req.body;
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    return res.status(400).json({ message: "Passwords don't match" });
+  }
+
+  // Check if email already exists
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return res.status(400).json({ message: 'Email is already registered' });
+  }
+
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // Create and save the new user
+  const user = new User({ name, email, password: hashedPassword });
+  await user.save();
+
+  res.status(201).json({ message: 'User registered successfully. Please log in.' });
 });
 
+app.post('/api/auth/login', async (req, res) => {
+  const { email, password } = req.body;
 
-app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, 'register.html'));
-  });
-  
-  // Handle form submission
-  app.post('/register', (req, res) => {
-    const { name, email, password, confirmPassword, gender } = req.body;
-  
-    // Perform validation and save to database (placeholder logic)
-    if (password !== confirmPassword) {
-      return res.status(400).send('Passwords do not match!');
-    }
-  
-    // Save user to database (Example only, no DB configured)
-    console.log('User registered:', { name, email, gender });
-    res.send('Registration successful!');
-  });
-  
-  app.get('/forgot-password', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'forgot-password.html'));
-  });
-  
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
+  // Find the user by email
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(400).json({ message: 'Invalid email or password' });
+  }
+
+  // Compare the password with the hashed password
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(400).json({ message: 'Invalid email or password' });
+  }
+
+  // Generate a JWT token
+  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+  // Return the token
+  res.json({ message: 'Login successful', token });
+});
+
+// Serve static frontend files (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname)));
+
+// Handle requests to other routes (return index.html)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index1.html'));
+});
+
+// Start server
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
