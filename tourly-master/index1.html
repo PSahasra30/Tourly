@@ -447,7 +447,7 @@
 
                   <!-- <button class="btn btn-secondary">Book Now</button> -->
                   <button class="btn btn-secondary">
-                    <a href="booking.html?packageName=Experience%20The%20Great%20Holiday%20On%20Beach&amount=$750" style="color:white;">Book Now</a>
+                    <a href="javascript:void(0)" style="color:white;" onclick="handleBooking('Experience The Great Holiday On Beach', '$750')">Book Now</a>
                   </button>
                   
 
@@ -525,7 +525,7 @@
 
                   <!-- <button class="btn btn-secondary">Book Now</button> -->
                   <button class="btn btn-secondary">
-                    <a href="booking.html?packageName=Experience%20The%20Great%20Holiday%20On%20Beach&amount=$750" style="color:white;">Book Now</a>
+                    <a href="javascript:void(0)" style="color:white;" onclick="handleBooking('Experience The Great Holiday On Beach', '$520')">Book Now</a>
                   </button>
                   
 
@@ -603,7 +603,7 @@
 
                   <!-- <button class="btn btn-secondary">Book Now</button> -->
                   <button class="btn btn-secondary">
-                    <a href="booking.html?packageName=Experience%20The%20Great%20Holiday%20On%20Beach&amount=$750" style="color:white;">Book Now</a>
+                    <a href="javascript:void(0)" style="color:white;" onclick="handleBooking('Experience The Great Holiday On Beach', '$660')">Book Now</a>
                   </button>
                   
 
@@ -926,6 +926,18 @@
 
 
   <script>
+    function handleBooking(packageName, amount) {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (isLoggedIn) {
+    const bookingUrl = `booking.html?packageName=${packageName}&amount=${amount}`;
+    window.location.href = bookingUrl;
+  } else {
+    alert('Please log in to proceed with the booking.');
+    window.location.href = 'login.html'; // Redirect to login page
+  }
+}
+
     document.addEventListener('DOMContentLoaded', () => {
       const isLoggedIn = localStorage.getItem('isLoggedIn'); // Check if user is logged in
   

@@ -61,7 +61,7 @@
               <p class="price">$750 <span>/ per person</span></p>
               <!-- <button class="btn btn-secondary">Book Now</button> -->
               <button class="btn btn-secondary">
-                <a href="booking.html?packageName=Experience%20The%20Great%20Holiday%20On%20Beach&amount=$750" style="color:white;">Book Now</a>
+                <a href="javascript:void(0)" style="color:white;" onclick="handleBooking('Experience%20The%20Great%20Holiday%20On%20Beach', '$750')">Book Now</a>
               </button>
               
             </div>
@@ -97,8 +97,14 @@
               <p class="price">$890 <span>/ per person</span></p>
               <!-- <button class="btn btn-secondary">Book Now</button> -->
               <button class="btn btn-secondary">
-                <a href="booking.html?packageName=Experience%20The%20Great%20Holiday%20On%20Beach&amount=$750" style="color:white;">Book Now</a>
-              </button>
+                <a 
+                href="javascript:void(0)" 
+                style="color:white;" 
+                onclick="handleBooking('Experience%20The%20Great%20Holiday%20On%20Beach', '$890')"
+             >
+                Book Now
+             </a>
+                           </button>
               
             </div>
           </div>
@@ -132,8 +138,14 @@
               <p class="price">$720 <span>/ per person</span></p>
               <!-- <button class="btn btn-secondary">Book Now</button> -->
               <button class="btn btn-secondary">
-                <a href="booking.html?packageName=Experience%20The%20Great%20Holiday%20On%20Beach&amount=$750" style="color:white;">Book Now</a>
-              </button>
+                <a 
+                href="javascript:void(0)" 
+                style="color:white;" 
+                onclick="handleBooking('Experience%20The%20Great%20Holiday%20On%20Beach', '$720')"
+             >
+                Book Now
+             </a>
+                           </button>
               
             </div>
           </div>
@@ -167,8 +179,14 @@
               <p class="price">$1050 <span>/ per person</span></p>
               <!-- <button class="btn btn-secondary">Book Now</button> -->
               <button class="btn btn-secondary">
-                <a href="booking.html?packageName=Experience%20The%20Great%20Holiday%20On%20Beach&amount=$750" style="color:white;">Book Now</a>
-              </button>
+                <a 
+                href="javascript:void(0)" 
+                style="color:white;" 
+                onclick="handleBooking('Experience%20The%20Great%20Holiday%20On%20Beach', '$1050')"
+             >
+                Book Now
+             </a>
+                           </button>
               
             </div>
           </div>
@@ -178,6 +196,21 @@
 
     </div>
   </section>
+  <script>function handleBooking(packageName, amount) {
+    // Check if the user is logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  
+    if (isLoggedIn) {
+      // User is logged in, redirect to the booking page
+      const bookingUrl = `booking.html?packageName=${packageName}&amount=${amount}`;
+      window.location.href = bookingUrl;
+    } else {
+      // User is not logged in, redirect to login page
+      alert('Please log in to proceed with the booking.');
+      window.location.href = 'login.html'; // Adjust the login page path as needed
+    }
+  }
+  </script>
 </body>
 
 </html>
