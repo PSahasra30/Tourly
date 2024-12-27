@@ -20,14 +20,16 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: var(--spanish-gray);
       color: var(--black-coral);
       margin: 0;
       padding: 0;
     }
-
+    section{
+      width: 50%;
+      margin:auto
+    }
     .container {
-      width: 80%;
+      width: 50%;
       margin: 0 auto;
       padding: 20px;
     }
@@ -65,14 +67,14 @@
       padding: 15px;
       border-radius: 5px;
       margin-top: 20px;
-      color: var(--white);
+      color: white;
       font-size: 1.4rem;
       text-align: center;
     }
 
     .btn-secondary {
       background-color: var(--blue-ncs);
-      color: var(--white);
+      color: white;
       padding: 12px 20px;
       border: none;
       font-size: 1rem;
@@ -117,24 +119,24 @@
     // Get the form data from the URL and display it
     const urlParams = new URLSearchParams(window.location.search);
 
-    const packageName = urlParams.get('packageName');
-    const amount = parseFloat(urlParams.get('amount').replace('$', ''));
-    const membersCount = urlParams.get('members');
-    const bookingDate = urlParams.get('date');
-    const userName = urlParams.get('name');
-    const userEmail = urlParams.get('email');
-    const userPhone = urlParams.get('phone');
+const packageName = urlParams.get('packageName');
+const amount = parseFloat(urlParams.get('amount').replace('$', ''));
+const membersCount = urlParams.get('members');
+const bookingDate = urlParams.get('date');
+const userName = urlParams.get('name');
+const userEmail = urlParams.get('email');
+const userPhone = urlParams.get('phone');
 
-    document.getElementById('packageName').textContent = packageName;
-    document.getElementById('membersCount').textContent = membersCount;
-    document.getElementById('bookingDate').textContent = bookingDate;
-    document.getElementById('userName').textContent = userName;
-    document.getElementById('userEmail').textContent = userEmail;
-    document.getElementById('userPhone').textContent = userPhone;
+document.getElementById('packageName').textContent = packageName;
+document.getElementById('membersCount').textContent = membersCount;
+document.getElementById('bookingDate').textContent = bookingDate;
+document.getElementById('userName').textContent = userName;
+document.getElementById('userEmail').textContent = userEmail;
+document.getElementById('userPhone').textContent = userPhone;
 
-    // Calculate the total price
-    const totalPrice = (amount * membersCount).toFixed(2);
-    document.getElementById('totalPrice').textContent = totalPrice;
+// Calculate the total price
+const totalPrice = (amount * membersCount).toFixed(2);
+document.getElementById('totalPrice').textContent = totalPrice;
   </script>
 </body>
 

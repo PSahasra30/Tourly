@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const path = require('path');
-
+const nodemailer = require('nodemailer');
+const cors = require('cors');
 // Load environment variables from a .env file
 dotenv.config();
 
@@ -83,6 +84,52 @@ app.use(express.static(path.join(__dirname)));
 // Handle requests to other routes (return index.html)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index1.html'));
+});
+
+
+app.use(bodyParser.json());
+app.use(cors());
+
+app.post('/send-email', async (req, res) => {
+    const { name, email, phone, members, date, packageName, amount } = req.body;
+
+    // Configure Nodemailer
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'your email', // Replace with your email
+            pass: 'your app password', // Replace with your email password
+        },
+    });
+    const cleanedAmount = amount.replace(/[^0-9.-]/g, ''); // Remove everything except digits, minus, and period
+    const money = Number(cleanedAmount);    const mem = Number(members);   // Ensure members is an integer
+    // Validate the parsed values
+    if (isNaN(money) || isNaN(mem)) {
+        return res.status(400).send('Invalid amount or members');
+    } // Make sure members is an integer
+   
+    const totalPrice = money * mem; // Calculate the total price
+    const text = `Hi ${name},\n\nThank you for booking "${packageName}".\n\nDetails:\n- Number of Members: ${members}\n- Preferred Date: ${date}\n- Price per Member: ${amount}\n- Total Price: $${totalPrice}\n\nYour booking has been successfully submitted!\n\nRegards,\nTeam.`;
+    
+    const mailOptions = {
+        from: 'Your email',
+        to: email, // User's email
+        subject: 'Booking Confirmation',
+        text: text
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.redirect('/receipt.html');
+        
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).send('Failed to send email.');
+    }
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
 });
 
 // Start server
